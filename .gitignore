@@ -1,0 +1,20 @@
+# Bỏ qua thư viện của Frontend
+frontend/node_modules/
+frontend/dist/
+frontend/build/
+
+# Bỏ qua thư viện của Backend (Java/Spring Boot)
+backend/target/
+backend/.mvn/wrapper/maven-wrapper.jar
+
+# Bỏ qua các file môi trường chứa mật khẩu
+.env
+*.env
+env.*
+
+# Bỏ qua file rác của hệ điều hành và IDE
+.DS_Store
+.vscode/
+.idea/
+*.iml
+*.log
