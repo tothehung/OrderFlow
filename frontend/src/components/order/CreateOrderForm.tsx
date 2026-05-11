@@ -2,7 +2,6 @@ import { useFieldArray, useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { useNavigate } from 'react-router-dom'
 import { Plus, Trash2 } from 'lucide-react'
 import { orderApi } from '@/api/orderApi'
 import toast from 'react-hot-toast'
@@ -30,7 +29,6 @@ const schema = z.object({
 type FormData = z.infer<typeof schema>
 
 export function CreateOrderForm() {
-  const navigate = useNavigate()
   const queryClient = useQueryClient()
 
   const { register, control, handleSubmit, watch, formState: { errors } } = useForm<FormData>({
@@ -50,8 +48,8 @@ export function CreateOrderForm() {
     mutationFn: orderApi.create,
     onSuccess: (order) => {
       queryClient.invalidateQueries({ queryKey: ['orders'] })
-      toast.success('Order created!')
-      navigate(`/orders/${order.id}`)
+      queryClient.invalidateQueries({ queryKey: ['order-stats'] })
+      toast.success(`Đơn hàng #${order.id.slice(-6).toUpperCase()} đã được đẩy vào Kafka thành công!`);
     },
   })
 
