@@ -11,6 +11,7 @@ services:
       MONGO_INITDB_ROOT_USERNAME: ${MONGO_USERNAME:-orderflow}
       MONGO_INITDB_ROOT_PASSWORD: ${MONGO_PASSWORD:-orderflow123}
       MONGO_INITDB_DATABASE: orderflow
+      # mongodb://orderflow:orderflow123@localhost:27017/?authSource=admin
     ports:
       - "27017:27017"
     volumes:
